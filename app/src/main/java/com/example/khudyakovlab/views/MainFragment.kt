@@ -167,11 +167,11 @@ class MainFragment : Fragment() {
         if (isPopular) {
             return
         }
-        popularButton.setBackgroundColor(context?.getColor(R.color.button_normal)!!)
+        popularButton.setBackgroundColor(context?.getColor(R.color.button_pressed)!!)
         popularButton.setTextColor(Color.WHITE)
         recyclerViewFilms.adapter = pagindAdapter
-        featuredButton.setBackgroundColor(context?.getColor(R.color.button_pressed)!!)
-        featuredButton.setTextColor(context?.getColor(R.color.button_normal)!!)
+        featuredButton.setBackgroundColor(context?.getColor(R.color.button_normal)!!)
+        featuredButton.setTextColor(context?.getColor(R.color.button_pressed)!!)
         isPopular = true
         appBar.title = context?.getString(R.string.popular)
     }
@@ -243,7 +243,7 @@ class MainFragment : Fragment() {
 
         fun bindFromDb(filmDetail: FilmDetail) {
             nameTextView.text = filmDetail.name
-            genreTextView.text = Utils.removeSquareBrackets(filmDetail.genre.first().toString()).replaceFirstChar {
+            genreTextView.text = filmDetail.genre.split(',').first().replaceFirstChar {
                 it.uppercase()
             }.plus(" (${filmDetail.year})")
             star.isVisible = true

@@ -45,10 +45,9 @@ class FilmFragment : Fragment() {
     }
 
 
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        filmId = arguments?.getSerializable(ARG_FILM_ID, String::class.java)!!
+        filmId = arguments?.getSerializable(ARG_FILM_ID) as String
         filmDetailViewModel.loadFilm(filmId)
     }
 
