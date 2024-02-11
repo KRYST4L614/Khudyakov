@@ -1,0 +1,16 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Lab</string>
+    <string name="featured">Избранные</string>
+    <string name="popular">Популярные</string>
+    <string name="genre">Жанр:
+        <xliff:g id="genre">%1$s</xliff:g>
+    </string>
+    <string name="country">Страна:
+        <xliff:g id="country">%1$s</xliff:g>
+    </string>
+    <string name="year">Год:
+        <xliff:g id="year">%1$s</xliff:g>
+    </string>
+    <string name="retry">Повторить</string>
+    <string name="error_message">Произошла ошибка при загрузке данных, проверьте подключение к сети</string>
+</resources>

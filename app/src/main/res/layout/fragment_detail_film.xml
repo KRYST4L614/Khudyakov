@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/film_detail_cloud_image_view"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/cloud"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/film_detail_error_text_view"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:fontFamily="sans-serif"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/film_detail_cloud_image_view"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/film_detail_retry_button"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="@color/button_pressed"
+        android:text="@string/retry"
+        android:textColor="@color/button_normal"
+        android:fontFamily="sans-serif"
+        android:textSize="14sp"
+        app:cornerRadius="100dp"
+        android:layout_margin="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/film_detail_error_text_view"
+        android:visibility="invisible"
+        android:clickable="false" />
+
+    <ImageView
+        android:id="@+id/poster_image_view"
+        android:layout_width="412dp"
+        android:layout_height="500dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/detail_name_text_view"
+        android:layout_width="343dp"
+        android:layout_height="wrap_content"
+        android:maxHeight="25dp"
+        android:layout_margin="12dp"
+        android:textSize="20sp"
+        android:fontFamily="sans-serif"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:focusable="false"
+        android:scrollHorizontally="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/poster_image_view"
+        tools:text="Изгой-один: Звёздные войны" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scroll_view"
+        android:scrollbars="vertical"
+        android:fillViewport="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detail_name_text_view">
+
+        <TextView
+            android:id="@+id/detail_description_text_view"
+            android:layout_width="343dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ellipsize="marquee"
+            android:focusable="false"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:maxHeight="160dp"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_name_text_view"
+            tools:text="Сопротивление собирает отряд для выполнения особой миссии - надо выкрасть чертежи самого совершенного и мертоносного оружия Империи. Не всем суждено вернуться домой, но герои готовы к этому, ведь на кону судьба Галактики" />
+
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/detail_genre_text_view"
+        android:layout_width="343dp"
+        android:layout_height="24dp"
+        android:maxHeight="25dp"
+        android:textSize="16sp"
+        android:fontFamily="sans-serif"
+        android:layout_marginTop="8dp"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:focusable="false"
+        android:scrollHorizontally="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scroll_view"
+        tools:text="Жанры: фантастика, приключения" />
+
+    <TextView
+        android:id="@+id/detail_country_text_view"
+        android:layout_width="343dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:maxHeight="25dp"
+        android:textSize="16sp"
+        android:fontFamily="sans-serif"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:focusable="false"
+        android:scrollHorizontally="true"
+        tools:text="Страны: США"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detail_genre_text_view" />
+
+    <TextView
+        android:id="@+id/detail_year_text_view"
+        android:layout_width="343dp"
+        android:layout_height="wrap_content"
+        android:maxHeight="25dp"
+        android:layout_marginTop="8dp"
+        android:textSize="16sp"
+        android:fontFamily="sans-serif"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:focusable="false"
+        android:scrollHorizontally="true"
+        tools:text="Год: 2019"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detail_country_text_view" />
+
+    <ProgressBar
+        android:id="@+id/poster_progress_bar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        app:layout_constraintBottom_toBottomOf="@+id/poster_image_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/poster_image_view"
+        app:layout_constraintTop_toTopOf="@+id/poster_image_view"
+        android:indeterminateTint="@color/button_pressed"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
