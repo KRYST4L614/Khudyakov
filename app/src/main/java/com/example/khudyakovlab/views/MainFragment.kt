@@ -213,22 +213,22 @@ class MainFragment : Fragment() {
             }
         }
 
-        fun bind(film_item: FilmCard?,) {
-            film_item?.let {
-                val response = FilmDbRepository.get().getFilm(film_item.id)
+        fun bind(filmItem: FilmCard?,) {
+            filmItem?.let {
+                val response = FilmDbRepository.get().getFilm(filmItem.id)
                 response.observe(
                     viewLifecycleOwner,
                     Observer {
                         star.isVisible = it != null
                     }
                 )
-                nameTextView.text = film_item.name
-                genreTextView.text = Utils.removeSquareBrackets(film_item.genres.first().toString()).replaceFirstChar {
+                nameTextView.text = filmItem.name
+                genreTextView.text = Utils.removeSquareBrackets(filmItem.genres.first().toString()).replaceFirstChar {
                     it.uppercase()
-                }.plus(" (${film_item.year})")
-                filmId = film_item.id
+                }.plus(" (${filmItem.year})")
+                filmId = filmItem.id
                 Picasso.get()
-                    .load(film_item.poster)
+                    .load(filmItem.poster)
                     .into(banner, object: Callback {
                         override fun onSuccess() {
                             progressBar.isVisible = false
@@ -243,7 +243,9 @@ class MainFragment : Fragment() {
 
         fun bindFromDb(filmDetail: FilmDetail) {
             nameTextView.text = filmDetail.name
-            genreTextView.text = filmDetail.genre
+            genreTextView.text = Utils.removeSquareBrackets(filmDetail.genre.first().toString()).replaceFirstChar {
+                it.uppercase()
+            }.plus(" (${filmDetail.year})")
             star.isVisible = true
             Picasso.get()
                 .load(filmDetail.posterUrl)
