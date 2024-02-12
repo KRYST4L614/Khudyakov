@@ -86,6 +86,7 @@ class MainFragment : Fragment() {
                     cloudImageView.isVisible = false
                     retryButton.isVisible = false
                     retryButton.isClickable = false
+                    errorTextView.isVisible = false
                 }
                 is LoadState.Error -> {
                     recyclerViewFilms.isVisible = false
@@ -93,6 +94,7 @@ class MainFragment : Fragment() {
                     cloudImageView.isVisible = true
                     retryButton.isVisible = true
                     retryButton.isClickable = true
+                    errorTextView.isVisible = true
                 }
                 else -> {
                     recyclerViewFilms.isVisible = true
@@ -100,6 +102,7 @@ class MainFragment : Fragment() {
                     cloudImageView.isVisible = false
                     retryButton.isVisible = false
                     retryButton.isClickable = false
+                    errorTextView.isVisible = false
                 }
             }
 
