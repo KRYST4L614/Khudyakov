@@ -50,6 +50,7 @@ class MainFragment : Fragment() {
     private lateinit var retryButton: Button
     private var isPopular = true
     private var callbacks: Callbacks? = null
+    private var errorNetwork = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         filmCardViewModel = ViewModelProvider(this)[FilmCardViewModel::class.java]
@@ -81,28 +82,16 @@ class MainFragment : Fragment() {
         pagindAdapter.addLoadStateListener {state ->
             when (state.refresh) {
                 is LoadState.Loading -> {
-                    recyclerViewFilms.isVisible = false
-                    progressBar.isVisible = true
-                    cloudImageView.isVisible = false
-                    retryButton.isVisible = false
-                    retryButton.isClickable = false
-                    errorTextView.isVisible = false
+                    errorNetwork = false
+                    loadingUi()
                 }
                 is LoadState.Error -> {
-                    recyclerViewFilms.isVisible = false
-                    progressBar.isVisible = false
-                    cloudImageView.isVisible = true
-                    retryButton.isVisible = true
-                    retryButton.isClickable = true
-                    errorTextView.isVisible = true
+                    errorNetwork = true
+                    errorUi()
                 }
                 else -> {
-                    recyclerViewFilms.isVisible = true
-                    progressBar.isVisible = false
-                    cloudImageView.isVisible = false
-                    retryButton.isVisible = false
-                    retryButton.isClickable = false
-                    errorTextView.isVisible = false
+                    errorNetwork = false
+                    notLoadingUi()
                 }
             }
 
@@ -170,6 +159,9 @@ class MainFragment : Fragment() {
         if (isPopular) {
             return
         }
+        if (errorNetwork) {
+            errorUi()
+        }
         popularButton.setBackgroundColor(context?.getColor(R.color.button_pressed)!!)
         popularButton.setTextColor(Color.WHITE)
         recyclerViewFilms.adapter = pagindAdapter
@@ -186,6 +178,7 @@ class MainFragment : Fragment() {
         featuredButton.setBackgroundColor(context?.getColor(R.color.button_pressed)!!)
         featuredButton.setTextColor(Color.WHITE)
         recyclerViewFilms.adapter = dbAdapter
+        notLoadingUi()
         popularButton.setBackgroundColor(context?.getColor(R.color.button_normal)!!)
         popularButton.setTextColor(context?.getColor(R.color.button_pressed)!!)
         isPopular = false
@@ -196,6 +189,33 @@ class MainFragment : Fragment() {
         fun newInstance(): MainFragment {
             return MainFragment()
         }
+    }
+
+    private fun errorUi() {
+        recyclerViewFilms.isVisible = false
+        progressBar.isVisible = false
+        cloudImageView.isVisible = true
+        retryButton.isVisible = true
+        retryButton.isClickable = true
+        errorTextView.isVisible = true
+    }
+
+    private fun loadingUi() {
+        recyclerViewFilms.isVisible = false
+        progressBar.isVisible = true
+        cloudImageView.isVisible = false
+        retryButton.isVisible = false
+        retryButton.isClickable = false
+        errorTextView.isVisible = false
+    }
+
+    private fun notLoadingUi() {
+        recyclerViewFilms.isVisible = true
+        progressBar.isVisible = false
+        cloudImageView.isVisible = false
+        retryButton.isVisible = false
+        retryButton.isClickable = false
+        errorTextView.isVisible = false
     }
 
     inner class FilmHolder(view: View): RecyclerView.ViewHolder(view), View.OnLongClickListener,
