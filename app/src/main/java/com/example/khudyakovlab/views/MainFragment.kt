@@ -35,6 +35,7 @@ import kotlinx.coroutines.launch
 import java.lang.Exception
 
 private const val KEY_IS_POPULAR = "isPopular"
+private const val KEY_ERROR_NETWORK = "errorNetwork"
 
 class MainFragment : Fragment() {
     private lateinit var recyclerViewFilms: RecyclerView
@@ -55,6 +56,7 @@ class MainFragment : Fragment() {
         super.onCreate(savedInstanceState)
         filmCardViewModel = ViewModelProvider(this)[FilmCardViewModel::class.java]
         isPopular = savedInstanceState?.getBoolean(KEY_IS_POPULAR, true) ?: true
+        errorNetwork = savedInstanceState?.getBoolean(KEY_ERROR_NETWORK, false) ?: false
     }
 
     override fun onCreateView(
@@ -127,6 +129,7 @@ class MainFragment : Fragment() {
     override fun onSaveInstanceState(savedInstanceState: Bundle) {
         super.onSaveInstanceState(savedInstanceState)
         savedInstanceState.putBoolean(KEY_IS_POPULAR, isPopular)
+        savedInstanceState.putBoolean(KEY_ERROR_NETWORK, errorNetwork)
     }
 
     private fun setupUI(view: View) {
@@ -153,14 +156,16 @@ class MainFragment : Fragment() {
                 pagindAdapter.retry()
             }
         }
+        if (errorNetwork) {
+            errorUi()
+        } else {
+            notLoadingUi()
+        }
     }
 
     private fun popularBtnHandler() {
         if (isPopular) {
             return
-        }
-        if (errorNetwork) {
-            errorUi()
         }
         popularButton.setBackgroundColor(context?.getColor(R.color.button_pressed)!!)
         popularButton.setTextColor(Color.WHITE)
@@ -169,6 +174,9 @@ class MainFragment : Fragment() {
         featuredButton.setTextColor(context?.getColor(R.color.button_pressed)!!)
         isPopular = true
         appBar.title = context?.getString(R.string.popular)
+        if (errorNetwork) {
+            errorUi()
+        }
     }
 
     private fun featuredBtnHandler() {
@@ -192,6 +200,9 @@ class MainFragment : Fragment() {
     }
 
     private fun errorUi() {
+        if (!isPopular) {
+            return
+        }
         recyclerViewFilms.isVisible = false
         progressBar.isVisible = false
         cloudImageView.isVisible = true
@@ -201,6 +212,9 @@ class MainFragment : Fragment() {
     }
 
     private fun loadingUi() {
+        if (!isPopular) {
+            return
+        }
         recyclerViewFilms.isVisible = false
         progressBar.isVisible = true
         cloudImageView.isVisible = false
