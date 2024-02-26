@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_films"
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="630dp"
+        android:background="@android:color/transparent"
         android:fadingEdge="vertical"
+        android:fadingEdgeLength="20dp"
         android:requiresFadingEdge="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,52 +23,53 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center"
+        android:indeterminateTint="@color/button_pressed"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/featured_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/recycler_view_films"
-        android:indeterminateTint="@color/button_pressed"
-        android:visibility="invisible"/>
+        app:layout_constraintTop_toTopOf="@+id/recycler_view" />
 
     <ImageView
-        android:id="@+id/cloud_image_view"
+        android:id="@+id/cloud_image"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/cloud"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/featured_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/recycler_view_films"
-        android:visibility="invisible"/>
+        app:layout_constraintTop_toTopOf="@+id/recycler_view"
+        android:importantForAccessibility="no" />
 
     <TextView
-        android:id="@+id/error_text_view"
+        android:id="@+id/error"
         android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:fontFamily="sans-serif"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/recycler_view_films"
-        app:layout_constraintStart_toStartOf="@+id/recycler_view_films"
-        app:layout_constraintTop_toBottomOf="@+id/cloud_image_view"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/recycler_view"
+        app:layout_constraintStart_toStartOf="@+id/recycler_view"
+        app:layout_constraintTop_toBottomOf="@+id/cloud_image" />
 
     <Button
         android:id="@+id/retry_button"
         android:layout_width="150dp"
         android:layout_height="60dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="8dp"
         android:backgroundTint="@color/button_pressed"
+        android:clickable="false"
+        android:fontFamily="sans-serif"
         android:text="@string/retry"
         android:textColor="@color/button_normal"
-        android:fontFamily="sans-serif"
         android:textSize="14sp"
-        app:cornerRadius="100dp"
-        android:layout_margin="8dp"
-        app:layout_constraintStart_toStartOf="@+id/tool_bar"
-        app:layout_constraintTop_toBottomOf="@+id/error_text_view"
         android:visibility="invisible"
-        android:clickable="false" />
+        app:cornerRadius="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tool_bar"
+        app:layout_constraintTop_toBottomOf="@+id/error" />
 
     <Button
         android:id="@+id/popular_button"
@@ -73,9 +77,9 @@
         android:layout_height="60dp"
         android:layout_margin="24dp"
         android:backgroundTint="@color/button_normal"
+        android:fontFamily="sans-serif"
         android:text="@string/popular"
         android:textColor="@color/button_pressed"
-        android:fontFamily="sans-serif"
         app:cornerRadius="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -86,9 +90,9 @@
         android:layout_height="60dp"
         android:layout_margin="24dp"
         android:backgroundTint="@color/button_pressed"
+        android:fontFamily="sans-serif"
         android:text="@string/featured"
         android:textColor="@color/button_normal"
-        android:fontFamily="sans-serif"
         app:cornerRadius="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -104,6 +108,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:title="Популярные"
-        app:titleTextAppearance="@style/appBar.text"/>
+        app:titleTextAppearance="@style/appBar.text"
+        tools:title="@string/popular" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

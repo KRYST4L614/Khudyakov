@@ -1,9 +1,5 @@
 <resources>
-    <style name="Button.White"
-        parent="Widget.AppCompat.Button"
-        xmlns:android="http://schemas.android.com/apk/res/android">
-        <item name="backgroundTint">@color/button_pressed</item>
-    </style>
+
     <style name="appBar.text" parent="TextAppearance.AppCompat.Widget.ActionMode.Title">
         <item name="android:textSize">25sp</item>
         <item name="fontFamily">sans-serif-medium</item>
