@@ -225,6 +225,7 @@ class MainFragment : Fragment() {
             isClickable = true
         }
         binding.error.isVisible = true
+        binding.error.text = requireContext().getText(R.string.error_message)
     }
 
     private fun loadingUi() {
