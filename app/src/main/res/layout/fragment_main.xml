@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="630dp"
+        android:layout_height="0dp"
         android:background="@android:color/transparent"
         android:fadingEdge="vertical"
         android:fadingEdgeLength="20dp"
         android:requiresFadingEdge="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tool_bar" />
@@ -25,7 +25,7 @@
         android:layout_gravity="center"
         android:indeterminateTint="@color/button_pressed"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@id/featured_button"
+        app:layout_constraintBottom_toTopOf="@id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/recycler_view" />
@@ -34,13 +34,13 @@
         android:id="@+id/cloud_image"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:importantForAccessibility="no"
         android:src="@drawable/cloud"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@id/featured_button"
+        app:layout_constraintBottom_toTopOf="@id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/recycler_view"
-        android:importantForAccessibility="no" />
+        app:layout_constraintTop_toTopOf="@+id/recycler_view" />
 
     <TextView
         android:id="@+id/error"
@@ -71,32 +71,46 @@
         app:layout_constraintStart_toStartOf="@+id/tool_bar"
         app:layout_constraintTop_toBottomOf="@+id/error" />
 
-    <Button
-        android:id="@+id/popular_button"
-        android:layout_width="170dp"
-        android:layout_height="60dp"
-        android:layout_margin="24dp"
-        android:backgroundTint="@color/button_normal"
-        android:fontFamily="sans-serif"
-        android:text="@string/popular"
-        android:textColor="@color/button_pressed"
-        app:cornerRadius="100dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/featured_button"
-        android:layout_width="170dp"
-        android:layout_height="60dp"
-        android:layout_margin="24dp"
-        android:backgroundTint="@color/button_pressed"
-        android:fontFamily="sans-serif"
-        android:text="@string/featured"
-        android:textColor="@color/button_normal"
-        app:cornerRadius="100dp"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/popular_button" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginVertical="8dp">
+
+        <Button
+            android:id="@+id/popular_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/button_normal"
+            android:fontFamily="sans-serif"
+            android:paddingVertical="10dp"
+            android:text="@string/popular"
+            android:textColor="@color/button_pressed"
+            android:textSize="16sp"
+            app:cornerRadius="100dp"
+            tools:ignore="ButtonStyle" />
+
+        <Button
+            android:id="@+id/featured_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="8dp"
+            android:backgroundTint="@color/button_pressed"
+            android:fontFamily="sans-serif"
+            android:paddingVertical="10dp"
+            android:text="@string/featured"
+            android:textColor="@color/button_normal"
+            android:textSize="16sp"
+            app:cornerRadius="100dp"
+            tools:ignore="ButtonStyle" />
+    </LinearLayout>
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/tool_bar"

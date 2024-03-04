@@ -2,10 +2,10 @@ package com.example.khudyakovlab
 
 import android.app.Application
 import android.content.Context
-import com.example.khudyakovlab.data.models.database.FilmDatabase
-import com.example.khudyakovlab.data.models.network.api.KinopoiskApi
-import com.example.khudyakovlab.data.models.repositories.db.RepositoryFavoriteDbImpl
-import com.example.khudyakovlab.data.models.repositories.kinopoiskapi.RepositoryKinopoiskApiImpl
+import com.example.khudyakovlab.data.database.FilmDatabase
+import com.example.khudyakovlab.data.network.api.KinopoiskApi
+import com.example.khudyakovlab.data.repositories.db.RepositoryFavoriteDbImpl
+import com.example.khudyakovlab.data.repositories.kinopoiskapi.RepositoryKinopoiskApiImpl
 import com.example.khudyakovlab.di.AppComponent
 import com.example.khudyakovlab.di.DaggerAppComponent
 import javax.inject.Inject

@@ -14,12 +14,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.khudyakovlab.adapters.FilmDbAdapter
-import com.example.khudyakovlab.adapters.FilmPagingAdapter
-import com.example.khudyakovlab.adapters.diffutils.FilmCardDiffUtilCallback
+import com.example.khudyakovlab.ui.adapters.FilmDbAdapter
+import com.example.khudyakovlab.ui.adapters.FilmPagingAdapter
+import com.example.khudyakovlab.ui.adapters.diffutils.FilmCardDiffUtilCallback
 import com.example.khudyakovlab.di.AppComponent
 import com.example.khudyakovlab.di.DaggerAppComponent
-import com.example.khudyakovlab.viewModels.FilmViewModel
+import com.example.khudyakovlab.ui.viewModels.FilmViewModel
 import com.example.photogallery.R
 import com.example.photogallery.databinding.FragmentMainBinding
 import kotlinx.coroutines.flow.collectLatest
@@ -75,8 +75,7 @@ class MainFragment : Fragment() {
             FilmCardDiffUtilCallback(),
             viewModel,
             viewLifecycleOwner,
-            callbacks,
-            HashSet<String>()
+            callbacks
         )
         pagingAdapter.addLoadStateListener { state ->
             when (state.refresh) {
@@ -106,9 +105,6 @@ class MainFragment : Fragment() {
             viewLifecycleOwner
         ) {
             dbAdapter.submitList(it.toMutableList())
-            pagingAdapter.updateFeaturedFilmsId(it.map {
-                it.id
-            }.toHashSet())
         }
 
         binding.recyclerView.adapter = if (isPopular) pagingAdapter else dbAdapter

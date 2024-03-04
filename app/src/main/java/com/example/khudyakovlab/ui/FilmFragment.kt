@@ -11,10 +11,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import com.example.khudyakovlab.Utils
-import com.example.khudyakovlab.data.models.FilmDetail
+import com.example.khudyakovlab.data.database.models.FilmDetail
 import com.example.khudyakovlab.di.AppComponent
 import com.example.khudyakovlab.di.DaggerAppComponent
-import com.example.khudyakovlab.viewModels.FilmViewModel
+import com.example.khudyakovlab.ui.viewModels.FilmViewModel
 import com.example.photogallery.R
 import com.example.photogallery.databinding.FragmentDetailFilmBinding
 import com.squareup.picasso.Callback
@@ -100,13 +100,11 @@ class FilmFragment : Fragment() {
                             it.year
                         )
                         updateUI(filmDetail)
-                        stream.removeObservers(viewLifecycleOwner)
                     } else {
                         showErrorUi()
                     }
                 }
             }
-            responseDb.removeObservers(viewLifecycleOwner)
         }
     }
 
